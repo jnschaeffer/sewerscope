@@ -98,7 +98,7 @@ export default function WWMapSheet({inlet, prefix, onSubmit, onClosed}: WWMapShe
 
   return (
     <Sheet open={sheetOpen && (inlet !== undefined)} onOpenChange={onOpenChange}>
-      <SheetContent className="min-w-3/6 max-w-3/6">
+      <SheetContent>
         <SheetHeader>
           <SheetTitle>Inlet #{inlet?.objectid! || 'unknown'}</SheetTitle>
           <SheetDescription>

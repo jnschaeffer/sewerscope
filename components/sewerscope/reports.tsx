@@ -4,10 +4,11 @@ import { createClient } from '@/lib/supabase/server'
 import { Item, ItemContent, ItemDescription, ItemGroup, ItemMedia, ItemTitle } from '../ui/item'
 import Link from "next/link"
 import { redirect } from "next/navigation"
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet"
+import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../ui/carousel"
 import { Card, CardContent } from "../ui/card"
 import { ScrollArea, ScrollBar } from "../ui/scroll-area"
+import { Button } from "../ui/button"
 
 type ReportWithImage = {
   id: number,
@@ -75,19 +76,19 @@ export default async function ReportsList() {
 
     return (
       <div className="m-auto">
-          <div className="flex space-x-4 p-4">
+          <div className="space-x-4 p-4">
             {
               urls.map((u) => {
                 console.log(u)
                 return (
-                  <div key={u} className="w-1/3">
+                  <div key={u} className="p-2">
                     <Card>
-                      <CardContent className="flex aspect-square items-center justify-center">
+                      <CardContent className="aspect-square items-center justify-center">
                         <Image
                           alt="image"
                           src={u}
-                          height={300}
-                          width={400}
+                          height={600}
+                          width={600}
                           loading="lazy"
                         />
                       </CardContent>
@@ -120,7 +121,7 @@ export default async function ReportsList() {
             </ItemContent>
             </Item>
           </SheetTrigger>
-          <SheetContent className="min-w-3/6 max-w-3/6 max-h-screen overflow-y-scroll">
+          <SheetContent className="max-h-screen overflow-y-scroll">
             <SheetHeader>
               <SheetTitle>{report.title}</SheetTitle>
               <SheetDescription>Report details</SheetDescription>
@@ -135,6 +136,11 @@ export default async function ReportsList() {
                 {maybeCarousel(report.imageUrls)}
               </div>
             </div>
+            <SheetFooter>
+              <SheetClose asChild>
+                <Button variant="outline">Close</Button>
+              </SheetClose>
+            </SheetFooter>
           </SheetContent>
         </Sheet>
   ))

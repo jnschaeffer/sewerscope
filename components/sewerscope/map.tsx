@@ -28,7 +28,7 @@ export default function WWMap({inletCallback}: WWMapProps) {
             <SheetTrigger asChild>
               <Button variant="outline" size="icon"><CircleQuestionMarkIcon/></Button>
             </SheetTrigger>
-            <SheetContent className="min-w-3/6 max-w-3/6">
+            <SheetContent>
               <SheetHeader>
                 <SheetTitle>
                               How to use
