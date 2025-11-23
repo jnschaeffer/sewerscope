@@ -1,6 +1,7 @@
 "use client"
 
 import { Tables } from "@/lib/supabase/database.types"
+import useWindowDimensions from "@/hooks/resize"
 import { useCallback, useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
@@ -27,6 +28,8 @@ export default function WWMapSheet({inlet, prefix, onSubmit, onClosed}: WWMapShe
   const [sheetOpen, setSheetOpen] = useState<boolean>(true)
 
   const [reportDescription, setReportDescription] = useState<string>()
+
+  const { width } = useWindowDimensions()
 
   const updateActiveUser = useCallback(
     async () => {
@@ -98,7 +101,7 @@ export default function WWMapSheet({inlet, prefix, onSubmit, onClosed}: WWMapShe
 
   return (
     <Sheet open={sheetOpen && (inlet !== undefined)} onOpenChange={onOpenChange}>
-      <SheetContent>
+      <SheetContent side={width < 768 ? "bottom" : "right"} className="max-md:h-5/6">
         <SheetHeader>
           <SheetTitle>Inlet #{inlet?.objectid! || 'unknown'}</SheetTitle>
           <SheetDescription>
